@@ -6,26 +6,26 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outli
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: 'Home', href: '/home' },
+  { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Services', href: '/services' },
-  { name: 'Smart Aquarium', href: '/customized' },
+  { name: 'Our Menu', href: '/menu' },
   { name: 'Feedback', href: '/feedbacak' },
-  { name: 'Collections', href: '/collection' },
+  { name: 'Contact Us', href: '/contact' },
 ]
 
 export default function AnjalFarmHero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-sky-700 border-b border-white/20 shadow-md">
+    <header className="fixed top-0 inset-x-0 z-50 bg-orange-500 border-b border-white/20 shadow-md">
       <nav aria-label="Global" className="flex items-center justify-between p-2 lg:px-8">
 
         {/* Logo */}
         <div className="flex lg:flex-1 items-center">
           <Link to="/" className="flex items-center gap-3">
             <span className="text-white font-bold text-xl tracking-wide">
-              Aqua World
+              Golden Spoon Restaurant
             </span>
           </Link>
         </div>
@@ -54,33 +54,7 @@ export default function AnjalFarmHero() {
             </Link>
           ))}
 
-          {/* Dropdown Menu */}
-          <Menu as="div" className="relative">
-            <MenuButton className="text-white font-semibold hover:text-yellow-300 cursor-pointer flex items-center gap-1">
-              Items <ChevronDownIcon className="h-4 w-4" />
-            </MenuButton>
-
-            <MenuItems className="absolute mt-2 w-40 bg-white shadow-lg rounded-md p-2 text-gray-800 z-50">
-              <MenuItem>
-                <a
-                  href="/fish"
-                  className="block px-4 py-2 rounded-md"
-                >
-                  Fishes
-                </a>
-              </MenuItem>
-
-              <MenuItem>
-               
-                  <a
-                    href="/access"
-                    className= "block px-4 py-2 rounded-md"
-                  >
-                    Accessories
-                  </a>
-              </MenuItem>
-            </MenuItems>
-          </Menu>
+         
 
         </div>
 
@@ -88,7 +62,7 @@ export default function AnjalFarmHero() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
           <Link
             to="/login"
-            className="text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-blue-600 hover:to-sky-500 px-5 py-2 rounded-lg shadow-lg transition-all"
+            className="text-sm font-semibold text-white bg-amber-800 hover:to-sky-500 px-5 py-2 rounded-lg shadow-lg transition-all"
           >
             Get Started 
           </Link>
