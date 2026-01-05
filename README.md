@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+# 🍽️ Golden Spoon Restaurant Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The **Golden Spoon Restaurant Management System** is a full-stack web application designed to streamline restaurant operations such as menu management, online food ordering, customer feedback, payments, delivery handling, and automated report generation.
 
-Currently, two official plugins are available:
+This project is built using the **MERN Stack** and styled with **Tailwind CSS** to provide a modern, responsive, and premium user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👤 User Management
+- User Registration & Login
+- Secure Authentication using JWT
+- Role-Based Access Control (Customer / Admin)
 
-## Expanding the ESLint configuration
+### 🍴 Menu Management
+- Food & Beverage Listings
+- Category-Based Menu Display
+- Featured Dishes & Special Offers
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🛒 Orders & Reservations
+- Online Food Ordering System
+- Shopping Cart & Order Summary
+- Order History & Status Tracking
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 💳 Payments & Delivery
+- Secure Payment Processing
+- Delivery Information Management
+- Real-Time Order Status Updates
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### ⭐ Feedback & Reviews
+- Customer Ratings & Reviews
+- Feedback Display on Home Page
+- Paginated Review System
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 📄 PDF Report Generator
+- Invoice PDF Download
+- Order & Sales Report PDFs
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 📧 Notifications
+- Email Notifications for Orders & Payments
+- Order Confirmation 
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js  
+- TypeScript / JavaScript  
+- Tailwind CSS  
+- Axios  
+
+### Backend
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT Authentication  
+
+### Other Tools & Libraries
+- RESTful APIs  
+- PDF Generator (pdf-lib / jsPDF / pdfkit)  
+- Email Services (Nodemailer)  
+- Cloud / Local Storage Support  
+
+---
+
+## 📂 Project Structure
+
