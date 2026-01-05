@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
+import { AuthProvider } from "./Context/authContext";
 
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
@@ -43,9 +44,11 @@ function Layout() {
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Layout />
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 

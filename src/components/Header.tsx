@@ -61,7 +61,7 @@ export default function AnjalFarmHero() {
         {/* CTA Buttons */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
           <Link
-            to="/login"
+            to="/register"
             className="text-sm font-semibold text-white bg-amber-800 hover:to-sky-500 px-5 py-2 rounded-lg shadow-lg transition-all"
           >
             Get Started 
