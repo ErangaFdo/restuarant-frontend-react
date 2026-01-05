@@ -1,4 +1,5 @@
 import homeimage from "../assets/homeimage.png";
+import FeedbackList from "../components/feedback";
 
 
 export default function AnjalFarmHero() {
@@ -56,6 +57,10 @@ export default function AnjalFarmHero() {
           </div>
 
         </div>
+      </section>
+
+      <section className='py-16 bg-gray-50'>
+            <FeedbackList />
       </section>
 
     </div>
