@@ -46,7 +46,7 @@ export default function Login() {
 
       setTimeout(() => {
         if (userData.roles?.includes("ADMIN")) {
-          navigate("/");
+          navigate("/admin");
         } else {
           navigate("/");
         }
