@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import { AuthProvider, useAuth } from "./Context/authContext";
 import AlertPopups from "./components/AlertPopups";
+import { CartProvider } from "./Context/cardContext";
+import Footer from "./components/Footer";
 
 const Services = lazy(() => import("./pages/Services"));
 const About = lazy(() => import("./pages/About"));
@@ -11,6 +13,12 @@ const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 const Feedback = lazy(() => import("./pages/Feedback"));
 const AdminDashBoard = lazy(() => import("./pages/AdminDashBoard"));
+
+const FoodAdmin = lazy(() => import("./AdminPages/foodAdmin"));
+const Menu = lazy(() => import("./pages/Menu"));
+const Order = lazy(() => import("./pages/OrderPage"));
+const Payment = lazy(() => import("./pages/PaymentPage"));
+
 
 type RequireAuthTypes = { children: ReactNode; roles?: string[] };
 
@@ -69,23 +77,49 @@ function Layout() {
           </div>
         }
       >
-        <Routes>
+       <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/menu" element={<Menu />} />
+
           <Route
-              path="/admin"
+              path="/orders"
               element={
-                <RequireAuth roles={["ADMIN"]}>
-                  <AdminDashBoard />
+                <RequireAuth roles={["USER"]}>
+                  <Order />
                 </RequireAuth>
-              }
-            ></Route>
+              } 
+          />
+
+          <Route
+              path="/payment"
+              element={
+                <RequireAuth roles={["USER"]}>
+                  <Payment />
+                </RequireAuth>
+              } 
+          />
+
+          {/* ADMIN ROUTES */}
+          <Route
+            path="/admin"
+            element={
+              <RequireAuth roles={["ADMIN"]}>
+                <AdminDashBoard />
+              </RequireAuth>
+            }
+          >
+            {/*  NESTED ROUTE */}
+            <Route path="food" element={<FoodAdmin />} />
+          </Route>
         </Routes>
+
       </Suspense>
+      <Footer />
     </>
   );
 }
@@ -93,9 +127,11 @@ function Layout() {
 function App() {
   return (
     <AuthProvider>
-    <BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
       <Layout />
-    </BrowserRouter>
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }

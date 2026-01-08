@@ -1,5 +1,5 @@
 import homeimage from "../assets/homeimage.png";
-import FeedbackList from "../components/feedback";
+import FeedbackList from "../components/Feedback";
 
 
 export default function AnjalFarmHero() {
@@ -42,14 +42,14 @@ export default function AnjalFarmHero() {
 
           <div className="mt-10 flex justify-center gap-6 flex-wrap">
             <a
-              href="/fish"
+              href="/menu"
               className="px-8 py-4 rounded-xl bg-orange-500 font-semibold shadow-xl hover:bg-orange-400 transition"
             >
               Explore Our Menu
             </a>
 
             <a
-              href="/access"
+              href="/services"
               className="px-8 py-4 rounded-xl border border-white/40 bg-white/10 backdrop-blur-md font-semibold hover:bg-orange-500 transition"
             >
               Explore our Service

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { feedabckSave } from "../Services/feedback";
+import { MessageSquare, User, Mail, Star, Send } from "lucide-react"; // Added for modern look
 
 const FeedbackForm: React.FC = () => {
   const [rating, setRating] = useState<number>(0);
@@ -41,112 +42,142 @@ const FeedbackForm: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-[url('https://images.unsplash.com/photo-1552566626-52f8b828add9')] bg-cover bg-center">
-      <div className="max-w-4xl mx-auto backdrop-blur-md bg-white/80 p-10 rounded-3xl shadow-2xl border border-amber-200">
-
-        {/* Restaurant Header */}
-        <div className="text-center">
-          <h1 className="text-5xl font-extrabold text-amber-800 tracking-wide">
-            🍽️ Dine With Us — Share Your Taste Experience
-          </h1>
-
-          <p className="text-gray-700 mt-4 text-lg">
-            We value your thoughts about our food, service & ambience.
-            Your feedback helps us serve you better.
-          </p>
-        </div>
-
-        {/* Form Body */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-
-          {/* Name */}
-          <div>
-            <label className="font-semibold text-amber-900 block mb-2">
-              👤 Customer Name
-            </label>
-            <input
-              type="text"
-              value={customername}
-              placeholder="Enter your full name"
-              onChange={(e) => setCustomerName(e.target.value)}
-              className="w-full border-2 border-amber-300 p-3 rounded-xl bg-white focus:ring-2 focus:ring-amber-500 outline-none"
-            />
+    <section className="min-h-screen py-20 bg-[#FAFAFA] flex items-center justify-center px-6">
+      <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[2.5rem] shadow-2xl shadow-gray-200/50 overflow-hidden border border-gray-100">
+        
+        {/* Left Side: Visual/Context */}
+        <div className="bg-gray-900 p-10 lg:p-16 text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500 rounded-full blur-[120px] opacity-20 -mr-32 -mt-32"></div>
+          
+          <div className="relative z-10">
+            <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center mb-8">
+              <MessageSquare size={24} className="text-white" />
+            </div>
+            <h1 className="text-4xl lg:text-5xl font-black leading-tight tracking-tighter mb-6">
+              Your Taste <br />
+              <span className="text-orange-500">Matters.</span>
+            </h1>
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xs">
+              Help us refine our craft. Share your thoughts on our food, service, and atmosphere.
+            </p>
           </div>
 
-          {/* Email */}
-          <div>
-            <label className="font-semibold text-amber-900 block mb-2">
-              📧 Email Address
-            </label>
-            <input
-              type="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border-2 border-amber-300 p-3 rounded-xl bg-white focus:ring-2 focus:ring-amber-500 outline-none"
-            />
+          <div className="relative z-10 space-y-6">
+            <div className="flex items-center gap-4 group">
+              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+                <Star size={18} className="text-orange-500 group-hover:text-white" />
+              </div>
+              <p className="text-sm font-bold text-gray-300">Rate our hospitality</p>
+            </div>
           </div>
         </div>
 
-        {/* Feedback Text */}
-        <div className="mt-8">
-          <label className="font-semibold text-amber-900 block mb-2">
-            📝 Tell Us About Your Dining Experience
-          </label>
+        {/* Right Side: Form */}
+        <div className="p-8 lg:p-16 bg-white">
+          <div className="space-y-8">
+            
+            {/* Input Group: Name & Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
+                  <input
+                    type="text"
+                    value={customername}
+                    placeholder="John Doe"
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-bold text-gray-800"
+                  />
+                </div>
+              </div>
 
-          <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            maxLength={500}
-            placeholder="How was the food, service, ambience, and hospitality?"
-            className="w-full border-2 border-amber-300 p-4 rounded-xl bg-white h-32 focus:ring-2 focus:ring-amber-500 outline-none"
-          ></textarea>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
+                  <input
+                    type="email"
+                    value={email}
+                    placeholder="john@example.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:bg-white focus:ring-2 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-bold text-gray-800"
+                  />
+                </div>
+              </div>
+            </div>
 
-          <p className="text-gray-500 text-sm mt-1">
-            {feedback.length}/500 characters
-          </p>
-        </div>
+            {/* Star Rating Section */}
+            <div className="space-y-4">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
+                Overall Experience
+              </label>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    className="transition-transform duration-200 active:scale-90"
+                    onClick={() => setRating(star)}
+                    onMouseEnter={() => setHover(star)}
+                    onMouseLeave={() => setHover(0)}
+                  >
+                    <FaStar
+                      className={`text-4xl lg:text-5xl ${
+                        star <= (hover || rating)
+                          ? "text-orange-500 scale-110 drop-shadow-[0_0_10px_rgba(249,115,22,0.3)]"
+                          : "text-gray-100"
+                      } transition-all duration-300`}
+                    />
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs font-bold text-gray-400">
+                {rating === 0
+                  ? "Select a star to begin"
+                  : `You've selected ${rating} out of 5 stars`}
+              </p>
+            </div>
 
-        {/* Rating */}
-        <div className="mt-8">
-          <label className="font-semibold text-amber-900 block mb-3">
-            ⭐ Rate Your Restaurant Experience
-          </label>
+            {/* Feedback Textarea */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
+                Your Review
+              </label>
+              <textarea
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                maxLength={500}
+                placeholder="Tell us about the flavors, the music, or the staff..."
+                className="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl h-40 focus:bg-white focus:ring-2 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-medium text-gray-700 resize-none"
+              ></textarea>
+              <div className="flex justify-end">
+                <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                  {feedback.length} / 500
+                </span>
+              </div>
+            </div>
 
-          <div className="flex gap-3 text-5xl">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-                key={star}
-                className={`cursor-pointer transition-transform duration-200 
-                ${star <= (hover || rating)
-                    ? "text-amber-500 scale-110"
-                    : "text-gray-300"
-                  }`}
-                onClick={() => setRating(star)}
-                onMouseEnter={() => setHover(star)}
-                onMouseLeave={() => setHover(0)}
-              />
-            ))}
+            {/* Submit Button */}
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-lg shadow-xl shadow-gray-200 hover:bg-orange-500 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50"
+            >
+              {loading ? (
+                <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+              ) : (
+                <>
+                  Send My Feedback <Send size={18} />
+                </>
+              )}
+            </button>
           </div>
-
-          <p className="mt-2 text-gray-600">
-            {rating === 0
-              ? "Tap a star to rate your experience"
-              : `You rated us ${rating} star(s)` }
-          </p>
         </div>
-
-        {/* Submit Button */}
-        <div className="mt-10">
-          <button
-            onClick={handleSubmit}
-            disabled={loading}
-            className="w-full bg-amber-700 text-white py-3 rounded-2xl text-lg font-bold shadow-md hover:bg-amber-900 transition"
-          >
-            {loading ? "Submitting Review..." : "Submit Feedback 🍴"}
-          </button>
-        </div>
-
       </div>
     </section>
   );
