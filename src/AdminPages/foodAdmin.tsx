@@ -144,7 +144,7 @@ function FoodAdmin() {
         </button>
       </div>
 
-      <div className="rounded-[2rem] overflow-hidden">
+      <div className="rounded-4xl overflow-hidden">
         <FoodCardGrid 
             ref={fishCardGridRef} 
             onEditClick={handleEditClick} 
@@ -154,7 +154,7 @@ function FoodAdmin() {
 
       {/* Modal Overlay */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-[100] p-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4">
           
           {/* Form Card */}
           <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative max-h-[90vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
@@ -249,7 +249,7 @@ function FoodAdmin() {
                   {/* Image Upload Area */}
                   <div className="space-y-4">
                       <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Media Presentation</label>
-                      <label className="flex flex-col items-center justify-center w-full aspect-video border-2 border-dashed border-gray-200 rounded-[2rem] cursor-pointer hover:bg-orange-50/50 hover:border-orange-200 transition-all overflow-hidden relative group">
+                      <label className="flex flex-col items-center justify-center w-full aspect-video border-2 border-dashed border-gray-200 rounded-4xl cursor-pointer hover:bg-orange-50/50 hover:border-orange-200 transition-all overflow-hidden relative group">
                         {preview ? (
                             <>
                                 <img src={preview} alt="preview" className="w-full h-full object-cover group-hover:opacity-75 transition-opacity" />
@@ -270,7 +270,7 @@ function FoodAdmin() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-[#0A0A0A] text-white py-5 rounded-[2rem] font-black text-lg shadow-xl hover:bg-orange-500 transition-all flex justify-center items-center gap-3 active:scale-[0.98] disabled:opacity-70 mt-8"
+                    className="w-full bg-[#0A0A0A] text-white py-5 rounded-4xl font-black text-lg shadow-xl hover:bg-orange-500 transition-all flex justify-center items-center gap-3 active:scale-[0.98] disabled:opacity-70 mt-8"
                     disabled={loading}
                   >
                     {loading ? (

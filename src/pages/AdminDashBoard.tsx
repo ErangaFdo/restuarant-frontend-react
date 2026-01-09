@@ -46,7 +46,7 @@ const DashboardLayout: React.FC = () => {
     <main className="min-h-screen w-full bg-[#F8F9FA] flex flex-col font-sans">
       
       {/* HEADER */}
-      <header className="sticky top-0 z-[60] flex w-full items-center justify-between bg-[#0A0A0A] px-6 py-3 shadow-lg shadow-black/10">
+      <header className="sticky top-0 z-60 flex w-full items-center justify-between bg-[#0A0A0A] px-6 py-3 shadow-lg shadow-black/10">
         
         {/* Logo + Menu */}
         <div className="flex items-center space-x-6">
@@ -71,7 +71,7 @@ const DashboardLayout: React.FC = () => {
             onClick={() => setProfileOpen(!profileOpen)}
             className="group flex items-center space-x-3 p-1 pr-3 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10"
           >
-            <div className="h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white flex items-center justify-center font-bold shadow-inner">
+            <div className="h-8 w-8 overflow-hidden rounded-full bg-linear-to-r from-orange-400 to-orange-600 text-white flex items-center justify-center font-bold shadow-inner">
               {firstLetter}
             </div>
             <span className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">{username}</span>

@@ -62,7 +62,7 @@ const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEdit
         {foodList.map((food) => (
           <div
             key={food._id}
-            className="group bg-[#1A1A1A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl shadow-black/50"
+            className="group bg-[#1A1A1A] rounded-4xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl shadow-black/50"
           >
             {/* Image Container */}
             <div className="relative h-56 overflow-hidden">
@@ -71,7 +71,7 @@ const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEdit
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 alt={food.foodName}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-[#1A1A1A] via-transparent to-transparent opacity-60"></div>
               
               {/* Floating Badge */}
               <span className="absolute bottom-4 left-4 px-3 py-1 bg-orange-500 text-black text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllFood, search } from "../Services/food";
-import { List, ShoppingCart, Search } from "lucide-react";
+import {  ShoppingCart, Search } from "lucide-react";
 import { useCart } from "../Context/cardContext";
 import CartDrawer from "../components/CartView";
 import { Link } from "react-router-dom";
@@ -161,7 +161,7 @@ export default function FoodCategorySection() {
             {foodList.map((food) => (
               <div
                 key={food._id}
-                className="group bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+                className="group bg-white rounded-4xl border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
               >
                 {/* Image */}
                 <div className="relative h-60 w-full overflow-hidden">
@@ -178,12 +178,12 @@ export default function FoodCategorySection() {
                 </div>
 
                 {/* Body */}
-                <div className="p-6 flex flex-col flex-grow">
+                <div className="p-6 flex flex-col grow">
                   <h3 className="text-xl font-bold text-gray-900 group-hover:text-orange-500 transition-colors mb-2">
                     {food.foodName}
                   </h3>
                   
-                  <p className="text-gray-500 text-sm line-clamp-2 mb-6 flex-grow leading-relaxed">
+                  <p className="text-gray-500 text-sm line-clamp-2 mb-6 flex-col grow leading-relaxed">
                     {food.description}
                   </p>
 

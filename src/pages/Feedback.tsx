@@ -166,7 +166,7 @@ const FeedbackForm: React.FC = () => {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-lg shadow-xl shadow-gray-200 hover:bg-orange-500 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50"
+              className="w-full bg-gray-900 text-white py-5 rounded-4xl font-black text-lg shadow-xl shadow-gray-200 hover:bg-orange-500 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50"
             >
               {loading ? (
                 <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>

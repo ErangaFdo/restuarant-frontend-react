@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { CreditCard, Calendar, User, Lock, Phone, Mail, AlertCircle, CheckCircle, Shield, ArrowLeft, Download } from "lucide-react";
+import { CreditCard, Calendar, User, Lock, Phone, Mail, AlertCircle, CheckCircle, Shield, ArrowLeft,  } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { paymentSave } from "../Services/payment";
-import { useAuth } from "../Context/authContext";
+// import { useAuth } from "../Context/authContext";
 
 export default function PaymentPage() {
   const { state } = useLocation();
@@ -22,7 +22,7 @@ export default function PaymentPage() {
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
