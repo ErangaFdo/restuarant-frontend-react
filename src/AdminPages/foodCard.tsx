@@ -1,6 +1,6 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import { getAllFood , deleteFood } from "../Services/food";
-import { Edit2, Trash2 } from "lucide-react";
+import { Edit2, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Food {
   _id: string;
@@ -20,7 +20,7 @@ export interface FoodCardGridHandle {
   refreshData: () => void;
 }
 
-const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEditClick,onDeleteSuccess}, ref) => {
+const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEditClick, onDeleteSuccess }, ref) => {
   const [foodList, setFoodList] = useState<Food[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -32,21 +32,18 @@ const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEdit
     setTotalPages(res.totalPages);
   };
 
-   const handleDelete = async (id: string) => {
-      const confirmDelete = confirm(
-        "Are you sure you want to delete this Food?"
-      );
-      if (!confirmDelete) return;
+  const handleDelete = async (id: string) => {
+    const confirmDelete = confirm("Are you sure you want to delete this exquisite dish?");
+    if (!confirmDelete) return;
 
-      try {
-        await deleteFood(id);
-        alert("Food deleted successfully!");
-        loadData();
-        onDeleteSuccess?.();
-      } catch (err) {
-        alert("Failed to delete fish.");
-      }
-    };
+    try {
+      await deleteFood(id);
+      loadData();
+      onDeleteSuccess?.();
+    } catch (err) {
+      alert("Failed to delete item.");
+    }
+  };
 
   useImperativeHandle(ref, () => ({
     refreshData: () => {
@@ -59,69 +56,82 @@ const FoodCardGrid = forwardRef<FoodCardGridHandle, FoodCardGridProps>(({ onEdit
   }, [page]);
 
   return (
-    <div className="mt-10">
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="mt-8">
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {foodList.map((food) => (
           <div
             key={food._id}
-            className="bg-white rounded-xl shadow-md p-4 border relative hover:shadow-lg transition"
+            className="group bg-[#1A1A1A] rounded-[2rem] overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl shadow-black/50"
           >
-            {/* Edit and Delete Icons */}
-            <div className="absolute top-2 right-2 flex gap-2">
-              <button
-                onClick={() => onEditClick?.(food)}
-                className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full transition shadow-md"
-                title="Edit"
-              >
-                <Edit2 size={18} />
-              </button>
-              <button
-                onClick={() => handleDelete(food._id)}
-                className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition shadow-md"
-                title="Delete"
-              >
-                <Trash2 size={18} />
-              </button>
-            </div>
-
-            <img
-              src={food.imageUrl}
-              className="w-full h-48 object-cover rounded-md"
-              alt={food.foodName}
-            />
-
-            <h3 className="text-lg font-semibold mt-3">{food.foodName}</h3>
-            <p className="text-gray-600 text-sm">{food.description}</p>
-
-            <div className="mt-3 flex justify-between text-sm">
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+            {/* Image Container */}
+            <div className="relative h-56 overflow-hidden">
+              <img
+                src={food.imageUrl}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                alt={food.foodName}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent opacity-60"></div>
+              
+              {/* Floating Badge */}
+              <span className="absolute bottom-4 left-4 px-3 py-1 bg-orange-500 text-black text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">
                 {food.foodCategory}
               </span>
-              <span className="font-semibold text-green-700">{food.price}</span>
+            </div>
+
+            {/* Content Container */}
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="text-xl font-bold text-white tracking-tight">{food.foodName}</h3>
+                <span className="text-orange-500 font-black text-sm">LKR {food.price}</span>
+              </div>
+              
+              <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 italic mb-6">
+                "{food.description}"
+              </p>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-white/5">
+                <button
+                  onClick={() => onEditClick?.(food)}
+                  className="flex items-center justify-center gap-2 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all font-bold text-xs uppercase tracking-wider border border-white/5 group-hover:border-orange-500/20"
+                >
+                  <Edit2 size={14} className="text-orange-500" /> Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(food._id)}
+                  className="flex items-center justify-center gap-2 py-2.5 bg-red-500/10 hover:bg-red-500 hover:text-white text-red-500 rounded-xl transition-all font-bold text-xs uppercase tracking-wider border border-red-500/10"
+                >
+                  <Trash2 size={14} /> Remove
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center gap-4 mt-8">
+      {/* Modern Pagination */}
+      <div className="flex justify-center items-center gap-8 mt-16">
         <button
           disabled={page === 1}
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
           onClick={() => setPage((p) => p - 1)}
+          className="p-3 rounded-full bg-[#1A1A1A] border border-white/10 text-orange-500 hover:bg-orange-500 hover:text-black transition-all disabled:opacity-20 disabled:hover:bg-[#1A1A1A] cursor-pointer"
         >
-          Previous
+          <ChevronLeft size={20} />
         </button>
 
-        <span className="font-medium text-lg">{page} / {totalPages}</span>
+        <div className="flex items-center gap-2 font-black text-gray-400">
+          <span className="text-white text-xl">{page}</span>
+          <span className="opacity-30">/</span>
+          <span className="opacity-30">{totalPages}</span>
+        </div>
 
         <button
           disabled={page === totalPages}
-          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
           onClick={() => setPage((p) => p + 1)}
+          className="p-3 rounded-full bg-[#1A1A1A] border border-white/10 text-orange-500 hover:bg-orange-500 hover:text-black transition-all disabled:opacity-20 disabled:hover:bg-[#1A1A1A] cursor-pointer"
         >
-          Next
+          <ChevronRight size={20} />
         </button>
       </div>
     </div>

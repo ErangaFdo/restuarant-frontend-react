@@ -1,8 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-// import fish from "../assets/icons8-fish-50.png"
-// import delivery from "../assets/icons8-delivery-50.png"
-
+import { 
+  UtensilsCrossed, 
+  Users, 
+  MessageSquare, 
+  Package, 
+  Truck, 
+  CreditCard, 
+  Menu, 
+  LogOut, 
+  User as UserIcon, 
+  Settings 
+} from "lucide-react"; // Using Lucide for a modern, consistent look
 
 interface UserType {
   name: string;
@@ -10,9 +19,8 @@ interface UserType {
 }
 
 const DashboardLayout: React.FC = () => {
-  // Replace this with your actual logged-in user from Context / API
   const user: UserType = {
-    name: "Eranga Fernando",  // <-- replace with your login details
+    name: "Eranga Fernando",
     role: "ADMIN",
   };
 
@@ -24,7 +32,6 @@ const DashboardLayout: React.FC = () => {
 
   const profileRef = useRef<HTMLDivElement | null>(null);
 
-  // close dropdown when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
@@ -36,128 +43,138 @@ const DashboardLayout: React.FC = () => {
   }, []);
 
   return (
-    <main className="min-h-screen w-full bg-gray-00 text-gray-700">
-
+    <main className="min-h-screen w-full bg-[#F8F9FA] flex flex-col font-sans">
+      
       {/* HEADER */}
-      <header className="flex w-full items-center justify-between border-b-2 border-gray-200 bg-sky-700 p-2">
+      <header className="sticky top-0 z-[60] flex w-full items-center justify-between bg-[#0A0A0A] px-6 py-3 shadow-lg shadow-black/10">
         
         {/* Logo + Menu */}
-        <div className="flex items-center space-x-2">
-          <button className="text-3xl" onClick={() => setAsideOpen(!asideOpen)}>
-            <i className="bx bx-menu text-white cursor-pointer"></i>
+        <div className="flex items-center space-x-6">
+          <button 
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors" 
+            onClick={() => setAsideOpen(!asideOpen)}
+          >
+            <Menu className="text-orange-500" size={24} />
           </button>
-          <div className="text-xl ml-5 text-white"> Golden Spoon Restaurant </div>
+          
+          <div className="text-xl font-black tracking-tighter text-white italic">
+            GOLDEN<span className="text-orange-500 font-light not-italic">SPOON</span>
+            <span className="ml-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 not-italic border-l border-white/20 pl-3">
+              Admin Portal
+            </span>
+          </div>
         </div>
 
         {/* Profile Dropdown */}
         <div className="relative" ref={profileRef}>
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="h-9 w-9 overflow-hidden rounded-full bg-gray-800 text-white flex items-center justify-center text-lg"
+            className="group flex items-center space-x-3 p-1 pr-3 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10"
           >
-            {firstLetter}
+            <div className="h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white flex items-center justify-center font-bold shadow-inner">
+              {firstLetter}
+            </div>
+            <span className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">{username}</span>
           </button>
 
           {profileOpen && (
-            <div className="absolute right-0 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md z-50">
-              
-              <div className="flex items-center space-x-2 p-2">
-                <div className="h-9 w-9 rounded-full bg-gray-800 text-white flex items-center justify-center text-lg">
+            <div className="absolute right-0 mt-3 w-56 overflow-hidden rounded-2xl border border-white/10 bg-[#121212] shadow-2xl z-50 ring-1 ring-black animate-in fade-in zoom-in duration-200">
+              <div className="bg-white/5 p-4 flex items-center space-x-3">
+                <div className="h-10 w-10 rounded-xl bg-orange-500 text-white flex items-center justify-center font-black">
                   {firstLetter}
                 </div>
-                <div className="font-medium">{username}</div>
+                <div>
+                  <div className="text-sm font-bold text-white">{username}</div>
+                  <div className="text-[10px] font-bold text-orange-500 uppercase tracking-widest">{user.role}</div>
+                </div>
               </div>
 
-              <div className="flex flex-col space-y-3 p-2">
-                <a className="transition hover:text-blue-600" href="#">
-                  My Profile
-                </a>
-                <a className="transition hover:text-blue-600" href="#">
-                  Edit Profile
-                </a>
-                <a className="transition hover:text-blue-600" href="#">
-                  Settings
-                </a>
-              </div>
-
-              <div className="p-2">
-                <button className="flex items-center space-x-2 transition hover:text-blue-600">
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    ></path>
-                  </svg>
-                  <a href="/login">Log Out</a>
+              <div className="p-2 space-y-1">
+                <button className="w-full flex items-center space-x-3 p-3 text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                  <UserIcon size={16} /> <span>My Profile</span>
+                </button>
+                <button className="w-full flex items-center space-x-3 p-3 text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                  <Settings size={16} /> <span>Settings</span>
                 </button>
               </div>
 
+              <div className="p-2 border-t border-white/5">
+                <a 
+                  href="/login" 
+                  className="w-full flex items-center space-x-3 p-3 text-sm font-bold text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
+                >
+                  <LogOut size={16} /> <span>Sign Out</span>
+                </a>
+              </div>
             </div>
           )}
         </div>
       </header>
 
-      {/* BODY */}
-      <div className="flex flex-1">
+      {/* BODY CONTAINER */}
+      <div className="flex flex-1 overflow-hidden">
 
         {/* SIDEBAR */}
-        {asideOpen && (
-          <aside
-            className="flex w-72 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2"
-            style={{ height: "90.5vh" }}
-          >
-            <Link to="/admin/food" className="flex items-center space-x-1 text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              {/* <span className="text-2xl"><img className="w-7.5" src={fish} alt="" /></span> */}
-              <span className="ml-3"> Foods </span>
-            </Link>
-
-
-            <Link to="/admin/customers" className="flex items-center space-x-1 text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              <span className="text-2xl"><i className="bx bx-user"></i></span>
-              <span className="ml-3">Customers</span>
-            </Link>
-
+        <aside
+          className={`
+            fixed lg:relative z-50 flex flex-col transition-all duration-300 ease-in-out border-r border-gray-200 bg-white
+            ${asideOpen ? "w-72 opacity-100 translate-x-0" : "w-0 opacity-0 -translate-x-full lg:translate-x-0 lg:hidden"}
+          `}
+          style={{ height: "calc(100vh - 64px)" }}
+        >
+          <nav className="flex-1 space-y-2 p-4 overflow-y-auto custom-scrollbar">
             
-            <Link to="/admin/feedback" className="flex items-center space-x-1 text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              <span className="text-2xl"> <i className="bx bx-message-dots text-2xl"></i> </span>
-              <span className="ml-3">FeedBack</span>
-            </Link>
+            <SidebarLink to="/admin/food" icon={<UtensilsCrossed size={20}/>} label="Food Menu" />
+            <SidebarLink to="/admin/customers" icon={<Users size={20}/>} label="Customers" />
+            <SidebarLink to="/admin/feedback" icon={<MessageSquare size={20}/>} label="Feedback" />
+            <SidebarLink to="/admin/orders" icon={<Package size={20}/>} label="Orders" />
+            <SidebarLink to="/admin/delivery" icon={<Truck size={20}/>} label="Delivery" />
+            <SidebarLink to="/admin/payments" icon={<CreditCard size={20}/>} label="Payments" />
 
-            
-            <Link to="/admin/orders" className="flex items-center space-x-1  text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              <span className="text-2xl"><i className="bx bx-package text-2xl"></i></span>
-              <span className="ml-3"> Orders</span>
-            </Link>
+          </nav>
 
-            <Link to="/admin/delivery" className="flex items-center space-x-1  text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              {/* <span className="text-2xl"><img className="w-7.5" src={delivery} alt="" /></span>               */}
-              <span className="ml-3">Delivery</span>
-            </Link>
-
-
-            <Link to="/admin/payments" className="flex items-center space-x-1  text-xl rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600 cursor-pointer">
-              <span className="text-2xl"><i className="bx bx-credit-card text-2xl"></i></span>
-              <span className="ml-3">Payments</span>
-            </Link>
-
-            
-          </aside>
-        )}    
+          <div className="p-4 border-t border-gray-100">
+            <div className="bg-orange-50 p-4 rounded-2xl">
+              <p className="text-[10px] font-black text-orange-600 uppercase tracking-[0.2em] mb-1">Status</p>
+              <div className="flex items-center space-x-2">
+                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-xs font-bold text-gray-600">Kitchen Online</span>
+              </div>
+            </div>
+          </div>
+        </aside>
 
         {/* MAIN CONTENT AREA */}
-        <main className="flex-1 overflow-auto p-6">
-          <Outlet />
+        <main className="flex-1 overflow-y-auto bg-[#F8F9FA] p-8 lg:p-10">
+          <div className="max-w-7xl mx-auto">
+             <Outlet />
+          </div>
         </main>
 
       </div>
     </main>
+  );
+};
+
+// Helper component for Sidebar Links to keep code clean
+const SidebarLink = ({ to, icon, label }: { to: string, icon: React.ReactNode, label: string }) => {
+  const isActive = window.location.pathname === to; // Simplified check
+  
+  return (
+    <Link 
+      to={to} 
+      className={`
+        flex items-center space-x-4 px-4 py-3.5 rounded-2xl transition-all group
+        ${isActive 
+          ? "bg-[#0A0A0A] text-white shadow-lg shadow-black/10" 
+          : "text-gray-500 hover:bg-gray-100 hover:text-gray-900"}
+      `}
+    >
+      <span className={`${isActive ? "text-orange-500" : "text-gray-400 group-hover:text-orange-500"} transition-colors`}>
+        {icon}
+      </span>
+      <span className="font-bold text-sm tracking-tight">{label}</span>
+    </Link>
   );
 };
 

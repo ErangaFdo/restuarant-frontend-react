@@ -18,6 +18,9 @@ const FoodAdmin = lazy(() => import("./AdminPages/foodAdmin"));
 const Menu = lazy(() => import("./pages/Menu"));
 const Order = lazy(() => import("./pages/OrderPage"));
 const Payment = lazy(() => import("./pages/PaymentPage"));
+const CustomerAdmin = lazy(() => import("./AdminPages/customerAdmin"));
+const FeedbackAdmin = lazy(() => import("./AdminPages/feedbackAdmin"));
+const OrderAdmin = lazy(() => import("./AdminPages/orderAdmin"));
 
 
 type RequireAuthTypes = { children: ReactNode; roles?: string[] };
@@ -115,6 +118,9 @@ function Layout() {
           >
             {/*  NESTED ROUTE */}
             <Route path="food" element={<FoodAdmin />} />
+            <Route path="customers" element={<CustomerAdmin />} />
+            <Route path="feedback" element={<FeedbackAdmin />} />
+            <Route path="orders" element={<OrderAdmin />} />
           </Route>
         </Routes>
 
